@@ -3,12 +3,29 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CKV Klok</title>
+    <style>
+        body {
+            background-color: black;
+        }
+        .a {
+            display: flex;
+            justify-content: center;  /* Centers horizontally */
+            align-items: center;      /* Centers vertically */
+            height: 97vh;
+            color: white;
+        }
+    </style>
     <script>
         var i = 0;
     
         function getSeconds() {
             var d = new Date();
-            return ((d.getHours()*3600)+(d.getMinutes()*60)+d.getSeconds());
+            if (d.getHours >= 12) {
+                hours = 0;
+            } else {
+                hours = d.getHours();
+            };
+            return ((hours*3600)+(d.getMinutes()*60)+d.getSeconds());
         }
 
 
@@ -82,7 +99,7 @@
         </script>
   </head>
   <body>
-    <pre><code id="string1">
+    <pre ><code id="string1" class="a">
   ___    ___    ___    ___    ___    ___    ___    ___    ___    ___    ___    ___    ___    ___    ___    ___  
  / _ \  / _ \  / _ \  / _ \  / _ \  / _ \  / _ \  / _ \  / _ \  / _ \  / _ \  / _ \  / _ \  / _ \  / _ \  / _ \ 
 | | | || | | || | | || | | || | | || | | || | | || | | || | | || | | || | | || | | || | | || | | || | | || | | |
