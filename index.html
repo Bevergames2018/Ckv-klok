@@ -1,0 +1,93 @@
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CKV Klok</title>
+    <script>
+        var i = 0;
+    
+        function getSeconds() {
+            var d = new Date();
+            return ((d.getHours()*3600)+(d.getMinutes()*60)+d.getSeconds());
+        }
+
+
+        function dec2bin2acii_update(dec) {
+            bin = (dec >>> 0).toString(2).padStart(17, "0");
+            bin = bin.slice(0,-1);
+            char = bin.split('');
+            var charString1 = '';
+            var charString2 = '';
+            var charString3 = '';
+            var charString4 = '';
+            var charString5 = '';
+            
+            char.forEach((char, index) => {
+                if (index == 15) {
+                    if (char == "0") {
+                        charString1 = charString1.concat("  ___  <br>");
+                        charString2 = charString2.concat(" / _ \\ <br>");
+                        charString3 = charString3.concat("| | | |<br>");
+                        charString4 = charString4.concat("| |_| |<br>");
+                        charString5 = charString5.concat(" \\___/ <br>");
+                    } else if (char == "1") {
+                        charString1 = charString1.concat("   _   <br>");
+                        charString2 = charString2.concat("  / |  <br>");
+                        charString3 = charString3.concat("  | |  <br>");
+                        charString4 = charString4.concat("  | |  <br>");
+                        charString5 = charString5.concat("  |_|  <br>");
+                    }
+                } else if (index == 0) {
+                    if (char == "0") {
+                        charString1 = "  ___  ";
+                        charString2 = " / _ \\ ";
+                        charString3 = "| | | |";
+                        charString4 = "| |_| |";
+                        charString5 = " \\___/ ";
+                    } else if (char == "1") {
+                        charString1 = "   _   ";
+                        charString2 = "  / |  ";
+                        charString3 = "  | |  ";
+                        charString4 = "  | |  ";
+                        charString5 = "  |_|  ";
+                    };
+                } else if (0 < index < 15) {
+                    if (char == "0") {
+                        charString1 = charString1.concat("  ___  ");
+                        charString2 = charString2.concat(" / _ \\ ");
+                        charString3 = charString3.concat("| | | |");
+                        charString4 = charString4.concat("| |_| |");
+                        charString5 = charString5.concat(" \\___/ ");
+                    } else if (char == "1") {
+                        charString1 = charString1.concat("   _   ");
+                        charString2 = charString2.concat("  / |  ");
+                        charString3 = charString3.concat("  | |  ");
+                        charString4 = charString4.concat("  | |  ");
+                        charString5 = charString5.concat("  |_|  ");
+                    };
+                };
+            });
+            console.log(bin.toString());
+            string = charString1.concat(charString2.concat(charString3).concat(charString4).concat(charString5))
+            document.getElementById("string1").innerHTML = string;
+            ++i;
+        };
+        
+        function update() {
+            dec2bin2acii_update(getSeconds());
+            ++i;
+        }
+
+        setInterval(update, 1000);
+        </script>
+  </head>
+  <body>
+    <pre><code id="string1">
+  ___    ___    ___    ___    ___    ___    ___    ___    ___    ___    ___    ___    ___    ___    ___    ___  
+ / _ \  / _ \  / _ \  / _ \  / _ \  / _ \  / _ \  / _ \  / _ \  / _ \  / _ \  / _ \  / _ \  / _ \  / _ \  / _ \ 
+| | | || | | || | | || | | || | | || | | || | | || | | || | | || | | || | | || | | || | | || | | || | | || | | |
+| |_| || |_| || |_| || |_| || |_| || |_| || |_| || |_| || |_| || |_| || |_| || |_| || |_| || |_| || |_| || |_| |
+ \___/  \___/  \___/  \___/  \___/  \___/  \___/  \___/  \___/  \___/  \___/  \___/  \___/  \___/  \___/  \___/ 
+    </code></pre>
+  </body>
+</html>

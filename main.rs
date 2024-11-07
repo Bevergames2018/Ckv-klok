@@ -24,7 +24,7 @@ fn handle_connection(mut stream: TcpStream) {
         .collect();
 
     let status_line = "HTTP/1.1 200 OK";
-    let contents = fs::read_to_string("./src/main.html").unwrap();
+    let contents = fs::read_to_string("./src/index.html").unwrap();
     let length = contents.len();
 
     let response =
