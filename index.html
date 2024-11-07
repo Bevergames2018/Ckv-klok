@@ -6,106 +6,81 @@
     <style>
         body {
             background-color: black;
+            overflow: hidden;
         }
         .a {
             display: flex;
             justify-content: center;  /* Centers horizontally */
             align-items: center;      /* Centers vertically */
-            height: 97vh;
+            height: 100vh;
             color: white;
             font-size: 1vw;
+            height: 100%;
+            overflow: hidden;
         }
     </style>
     <script>
-        var i = 0;
-    
-        function getSeconds() {
-            var d = new Date();
-            if (d.getHours >= 12) {
-                hours = 0;
-            } else {
-                hours = d.getHours();
-            };
-            return ((hours*3600)+(d.getMinutes()*60)+d.getSeconds());
-        }
+        document.addEventListener("DOMContentLoaded", function() {
+            function getSeconds() {
+                const d = new Date();
+                const hours = (d.getHours() >= 12) ? (d.getHours()-12) : d.getHours(); 
+                const totalSeconds = (hours * 3600) + (d.getMinutes() * 60) + d.getSeconds();
+                dec2bin2acii_update(totalSeconds);
+            }
 
+            function dec2bin2acii_update(dec) {
 
-        function dec2bin2acii_update(dec) {
-            bin = (dec >>> 0).toString(2).padStart(17, "0");
-            bin = bin.slice(0,-1);
-            char = bin.split('');
-            var charString1 = '';
-            var charString2 = '';
-            var charString3 = '';
-            var charString4 = '';
-            var charString5 = '';
-            
-            char.forEach((char, index) => {
-                if (index == 15) {
-                    if (char == "0") {
-                        charString1 = charString1.concat("  ___  <br>");
-                        charString2 = charString2.concat(" / _ \\ <br>");
-                        charString3 = charString3.concat("| | | |<br>");
-                        charString4 = charString4.concat("| |_| |<br>");
-                        charString5 = charString5.concat(" \\___/ <br>");
-                    } else if (char == "1") {
-                        charString1 = charString1.concat("   _   <br>");
-                        charString2 = charString2.concat("  / |  <br>");
-                        charString3 = charString3.concat("  | |  <br>");
-                        charString4 = charString4.concat("  | |  <br>");
-                        charString5 = charString5.concat("  |_|  <br>");
+                const bin = (dec >>> 0).toString(2).padStart(16, "0");
+
+                const charString1 = [];
+                const charString2 = [];
+                const charString3 = [];
+                const charString4 = [];
+                const charString5 = [];
+
+ 
+                for (let i = 0; i < bin.length; i++) {
+                    const char = bin[i];
+
+                    const isZero = (char === '0');
+                    const part1 = isZero ? "  ___  " : "   _   ";
+                    const part2 = isZero ? " / _ \\ " : "  / |  ";
+                    const part3 = isZero ? "| | | |" : "  | |  ";
+                    const part4 = isZero ? "| |_| |" : "  | |  ";
+                    const part5 = isZero ? " \\___/ " : "  |_|  ";
+
+                    if (i === 15) {
+                        charString1.push(part1 + "<br>");
+                        charString2.push(part2 + "<br>");
+                        charString3.push(part3 + "<br>");
+                        charString4.push(part4 + "<br>");
+                        charString5.push(part5 + "<br>");
+                    } else {
+                        charString1.push(part1);
+                        charString2.push(part2);
+                        charString3.push(part3);
+                        charString4.push(part4);
+                        charString5.push(part5);
                     }
-                } else if (index == 0) {
-                    if (char == "0") {
-                        charString1 = "  ___  ";
-                        charString2 = " / _ \\ ";
-                        charString3 = "| | | |";
-                        charString4 = "| |_| |";
-                        charString5 = " \\___/ ";
-                    } else if (char == "1") {
-                        charString1 = "   _   ";
-                        charString2 = "  / |  ";
-                        charString3 = "  | |  ";
-                        charString4 = "  | |  ";
-                        charString5 = "  |_|  ";
-                    };
-                } else if (0 < index < 15) {
-                    if (char == "0") {
-                        charString1 = charString1.concat("  ___  ");
-                        charString2 = charString2.concat(" / _ \\ ");
-                        charString3 = charString3.concat("| | | |");
-                        charString4 = charString4.concat("| |_| |");
-                        charString5 = charString5.concat(" \\___/ ");
-                    } else if (char == "1") {
-                        charString1 = charString1.concat("   _   ");
-                        charString2 = charString2.concat("  / |  ");
-                        charString3 = charString3.concat("  | |  ");
-                        charString4 = charString4.concat("  | |  ");
-                        charString5 = charString5.concat("  |_|  ");
-                    };
-                };
-            });
-            console.log(bin.toString());
-            string = charString1.concat(charString2.concat(charString3).concat(charString4).concat(charString5))
-            document.getElementById("string1").innerHTML = string;
-            ++i;
-        };
-        
-        function update() {
-            dec2bin2acii_update(getSeconds());
-            ++i;
-        }
+                }
 
-        setInterval(update, 1000);
-        </script>
+                const string = charString1.join('') + charString2.join('') + charString3.join('') + charString4.join('') + charString5.join('');
+                document.getElementById("time").innerHTML = string;
+            }
+
+            setInterval(getSeconds, 1000);
+        });
+    </script>
   </head>
   <body>
-    <pre ><code id="string1" class="a">
+    <div class="wrap">
+      <pre><code id="time" class="a">
   ___    ___    ___    ___    ___    ___    ___    ___    ___    ___    ___    ___    ___    ___    ___    ___  
  / _ \  / _ \  / _ \  / _ \  / _ \  / _ \  / _ \  / _ \  / _ \  / _ \  / _ \  / _ \  / _ \  / _ \  / _ \  / _ \ 
 | | | || | | || | | || | | || | | || | | || | | || | | || | | || | | || | | || | | || | | || | | || | | || | | |
 | |_| || |_| || |_| || |_| || |_| || |_| || |_| || |_| || |_| || |_| || |_| || |_| || |_| || |_| || |_| || |_| |
  \___/  \___/  \___/  \___/  \___/  \___/  \___/  \___/  \___/  \___/  \___/  \___/  \___/  \___/  \___/  \___/ 
-    </code></pre>
+      </code></pre>
+    </div>
   </body>
 </html>
