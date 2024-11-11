@@ -4,23 +4,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
     <title>CKV Klok</title>
     <style>
-  			html {
-        		‑webkit‑text‑size‑adjust: 100%; 
-        }
         body {
             background-color: black;
             overflow: hidden;
+            margin: 0px;
         }
         .a {
             display: flex;
+            height: 100vh;
             justify-content: center;  /* Centers horizontally */
             align-items: center;      /* Centers vertically */
-            height: 100vh;
             color: white;
             font-size: 1vw;
-            height: 100%;
             overflow: hidden;
         }
+        .pre {
+            margin: 0px;
+        }
+
     </style>
     <script>
         document.addEventListener("DOMContentLoaded", function() {
@@ -57,7 +58,7 @@
                         charString2.push(part2 + "<br>");
                         charString3.push(part3 + "<br>");
                         charString4.push(part4 + "<br>");
-                        charString5.push(part5 + "<br>");
+                        charString5.push(part5 + "<br><br>");
                     } else {
                         charString1.push(part1);
                         charString2.push(part2);
@@ -69,6 +70,7 @@
 
                 const string = charString1.join('') + charString2.join('') + charString3.join('') + charString4.join('') + charString5.join('');
                 document.getElementById("time").innerHTML = string;
+                
             }
 
             setInterval(getSeconds, 1000);
@@ -77,12 +79,13 @@
   </head>
   <body>
     <div class="wrap">
-      <pre><code id="time" class="a">
-  ___    ___    ___    ___    ___    ___    ___    ___    ___    ___    ___    ___    ___    ___    ___    ___  <br>
- / _ \  / _ \  / _ \  / _ \  / _ \  / _ \  / _ \  / _ \  / _ \  / _ \  / _ \  / _ \  / _ \  / _ \  / _ \  / _ \ <br>
-| | | || | | || | | || | | || | | || | | || | | || | | || | | || | | || | | || | | || | | || | | || | | || | | |<br>
-| |_| || |_| || |_| || |_| || |_| || |_| || |_| || |_| || |_| || |_| || |_| || |_| || |_| || |_| || |_| || |_| |<br>
- \___/  \___/  \___/  \___/  \___/  \___/  \___/  \___/  \___/  \___/  \___/  \___/  \___/  \___/  \___/  \___/ <br>
+      <pre class="pre"><code id="time" class="a">
+  ___    ___    ___    ___    ___    ___    ___    ___    ___    ___    ___    ___    ___    ___    ___    ___  
+ / _ \  / _ \  / _ \  / _ \  / _ \  / _ \  / _ \  / _ \  / _ \  / _ \  / _ \  / _ \  / _ \  / _ \  / _ \  / _ \ 
+| | | || | | || | | || | | || | | || | | || | | || | | || | | || | | || | | || | | || | | || | | || | | || | | |
+| |_| || |_| || |_| || |_| || |_| || |_| || |_| || |_| || |_| || |_| || |_| || |_| || |_| || |_| || |_| || |_| |
+ \___/  \___/  \___/  \___/  \___/  \___/  \___/  \___/  \___/  \___/  \___/  \___/  \___/  \___/  \___/  \___/ 
+ 
       </code></pre>
     </div>
   </body>
