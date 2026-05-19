@@ -126,7 +126,7 @@ function toggle24HourFormat() {
 var state = false;
 document.addEventListener("keydown", function(event) {
     state = !state;
-    if (event.code === "Escape") {
+    if (event.code === "KeyH" || event.code === "Escape") {
         document.getElementById("selectDiv").style.display = state ? "flex" : "none";
         document.getElementById("pre").style.display = state ? "none" : "flex";
     }
