@@ -70,12 +70,12 @@ function update() {
     var time
 
     // Calculate time per frame
-    var rate;
-    if (oldDate != null) {
-        rate = d.getTime() - oldDate.getTime();
-    }
-    oldDate = d;
-    console.log("Rate: " + rate + "ms");
+    // var rate;
+    // if (oldDate != null) {
+    //     rate = d.getTime() - oldDate.getTime();
+    // }
+    // oldDate = d;
+    // console.log("Rate: " + rate + "ms");
 
     // Correct time for all modes
     if (allOnes) {
