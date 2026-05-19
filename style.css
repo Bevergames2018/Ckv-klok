@@ -1,0 +1,83 @@
+body, html {
+    
+    background-color: black;
+    overflow: hidden;
+    margin: 0px;
+    height: 100vh;
+    width: 100vw;
+}
+
+.pre {
+    margin: 0px;
+    color: black;
+    background-color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+}
+
+.wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+}
+
+.time {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    font-size: 1vw;
+}
+
+.digit {
+    color: white;
+    font-family: monospace;
+    font-size: 1vw;
+}
+
+.selectDiv {
+    display: none;
+    font-family: monospace;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 90vh;
+    width: 90vw;
+    border-style: solid;
+    border-width: 5px;
+    border-color: white;
+}
+
+.switchBtn {    
+    display: flex;
+    flex-direction: row;
+    color: white;
+    font-size: 2.5vh;
+    text-align: center;
+    margin: 1vw;
+    background-color: transparent;
+    border-width: 0px;
+    border-radius: 0px;
+    
+}
+
+.setTitle {
+    color: white;
+    font-size: 3vh;
+    text-align: center;
+    margin: 0px;
+}
+
+.digitWrap {
+    display: flex;
+    font-family: monospace;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+}

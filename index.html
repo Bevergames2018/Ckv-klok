@@ -1,92 +1,30 @@
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CKV Klok</title>
-    <style>
-        body {
-            background-color: black;
-            overflow: hidden;
-            margin: 0px;
-        }
-        .a {
-            display: flex;
-            height: 100vh;
-            justify-content: center;  /* Centers horizontally */
-            align-items: center;      /* Centers vertically */
-            color: white;
-            font-size: 1vw;
-            overflow: hidden;
-        }
-        .pre {
-            margin: 0px;
-        }
-
-    </style>
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            function getSeconds() {
-                const d = new Date();
-                const hours = (d.getHours() >= 12) ? (d.getHours()-12) : d.getHours(); 
-                const totalSeconds = (hours * 3600) + (d.getMinutes() * 60) + d.getSeconds();
-                dec2bin2acii_update(totalSeconds);
-            }
-
-            function dec2bin2acii_update(dec) {
-
-                const bin = (dec >>> 0).toString(2).padStart(16, "0");
-
-                const charString1 = [];
-                const charString2 = [];
-                const charString3 = [];
-                const charString4 = [];
-                const charString5 = [];
-
- 
-                for (let i = 0; i < bin.length; i++) {
-                    const char = bin[i];
-
-                    const isZero = (char === '0');
-                    const part1 = isZero ? "  ___  " : "   _   ";
-                    const part2 = isZero ? " / _ \\ " : "  / |  ";
-                    const part3 = isZero ? "| | | |" : "  | |  ";
-                    const part4 = isZero ? "| |_| |" : "  | |  ";
-                    const part5 = isZero ? " \\___/ " : "  |_|  ";
-
-                    if (i === 15) {
-                        charString1.push(part1 + "<br>");
-                        charString2.push(part2 + "<br>");
-                        charString3.push(part3 + "<br>");
-                        charString4.push(part4 + "<br>");
-                        charString5.push(part5 + "<br><br>");
-                    } else {
-                        charString1.push(part1);
-                        charString2.push(part2);
-                        charString3.push(part3);
-                        charString4.push(part4);
-                        charString5.push(part5);
-                    }
-                }
-
-                const string = charString1.join('') + charString2.join('') + charString3.join('') + charString4.join('') + charString5.join('');
-                document.getElementById("time").innerHTML = string;
-                
-            }
-
-            setInterval(getSeconds, 1000);
-        });
-    </script>
-  </head>
-  <body>
-    <div class="wrap">
-      <pre class="pre"><code id="time" class="a">
-  ___    ___    ___    ___    ___    ___    ___    ___    ___    ___    ___    ___    ___    ___    ___    ___  
- / _ \  / _ \  / _ \  / _ \  / _ \  / _ \  / _ \  / _ \  / _ \  / _ \  / _ \  / _ \  / _ \  / _ \  / _ \  / _ \ 
-| | | || | | || | | || | | || | | || | | || | | || | | || | | || | | || | | || | | || | | || | | || | | || | | |
-| |_| || |_| || |_| || |_| || |_| || |_| || |_| || |_| || |_| || |_| || |_| || |_| || |_| || |_| || |_| || |_| |
- \___/  \___/  \___/  \___/  \___/  \___/  \___/  \___/  \___/  \___/  \___/  \___/  \___/  \___/  \___/  \___/ 
- 
-      </code></pre>
+    <script src="./script.js"></script>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <div class="wrapper">
+        <div class="selectDiv" id="selectDiv">
+                <div class="setTitle">Settings</div>
+                <div class="digitwrap">
+                    <button onClick="toggleAllOnes()" class="switchBtn">
+                        <code id="allOnesState">[ ]</code>
+                        ​ All 1's
+                    </button>
+                    <button onClick="toggle24HourFormat()" class="switchBtn"> 
+                        <code id="24hrsState">[ ]</code>
+                        ​ 24-Hour Format
+                    </button>
+                </div>
+        </div>
+        <pre class="pre" id="pre">
+            <code id="digits" class="time"></code>
+        </pre>
     </div>
-  </body>
+</body>
 </html>
